@@ -356,7 +356,11 @@
 
       /* for inline code */
       :not(pre):not(.hljs) > code {
-        color: #c9ae75; /* Change the old color so it seems less like an error */
+        color: rgb(
+          220,
+          155,
+          70
+        ); /* Change the old color so it seems less like an error */
         font-size: inherit;
       }
 
@@ -369,13 +373,13 @@
       .container {
         display: flex;
         margin: 0;
-        height: 30vh;
+        min-height: 40vh;
         align-items: center;
         justify-content: center;
       }
 
       .main {
-        width: 682px;
+        width: 90%;
       }
 
       p {
@@ -407,7 +411,7 @@
       <div class="main">
         <p>
           아래 문제를 &quot;수기 풀이&quot;와 &quot;코드 풀이&quot; 중 한 가지
-          방식을 선택하여 풀이하시오.
+          방식을 택하여 풀이하시오.
         </p>
         <p>수열 $\{a_n\}$이 모든 자연수 $n$에 대하여</p>
         <p>
@@ -425,7 +429,7 @@
             <li>
               코드 풀이의 경우 <code>C, C++, Java, JavaScript, Python</code> 중
               한 가지 언어를 선택하여 <br />
-              런타임이 1초를 넘지 않는 실행 가능한 코드를 작성한다.
+              수행 시간이 1초를 넘지 않는 실행 가능한 코드를 작성한다.
             </li>
             <li>
               작성한 답안은 사진으로 저장하여
