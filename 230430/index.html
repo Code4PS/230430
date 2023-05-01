@@ -5,6 +5,12 @@
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
 
     <style>
+      /* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+      /*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
       body {
         font-family: var(
           --vscode-markdown-font-family,
@@ -311,8 +317,8 @@
 
     <style>
       /*
- * Markdown PDF CSS
- */
+       * Markdown PDF CSS
+       */
 
       body {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI',
@@ -359,7 +365,7 @@
       }
 
       /* Page Break : use <div class="page"/> to insert page break
--------------------------------------------------------- */
+      -------------------------------------------------------- */
       .page {
         page-break-after: always;
       }
@@ -373,7 +379,7 @@
       }
 
       .main {
-        width: 90%;
+        width: 778px;
       }
 
       p {
@@ -382,6 +388,119 @@
 
       li {
         font-size: 16px;
+      }
+
+      .btn-group {
+        display: flex;
+        margin-top: 18px;
+        gap: 10px;
+      }
+
+      .btn {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 0.25rem;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+      }
+
+      .btn:hover {
+        background-color: #0062cc;
+      }
+
+      .btn:active {
+        background-color: #005cbf;
+        box-shadow: inset 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
+      }
+
+      .dialog {
+        border: none;
+        width: 100%;
+        height: 100%;
+        font-size: 20px;
+      }
+
+      .close-btn {
+        float: right;
+        border: none;
+        background-color: transparent;
+        font-weight: 900;
+        font-size: 15px;
+      }
+
+      .modal-content {
+        display: flex;
+        margin-top: 40px;
+        padding: 0 30px 30px;
+        /* gap: 80px; */
+        justify-content: space-around;
+      }
+
+      .code-view {
+        flex-direction: column;
+      }
+
+      .modal2 {
+        display: flex;
+        /* flex-direction: column; */
+        justify-content: center;
+        gap: 10px;
+      }
+
+      input[type='text'] {
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        padding: 5px;
+      }
+
+      datalist {
+        position: absolute;
+        z-index: 1;
+        margin-top: 5px;
+        padding: 0;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        max-height: 150px;
+        overflow-y: auto;
+      }
+
+      option {
+        padding: 5px;
+        font-size: 16px;
+        color: #333;
+      }
+
+      option:hover,
+      option:focus {
+        background-color: #f5f5f5;
+      }
+
+      .imgContainer {
+        display: flex;
+        justify-content: center;
+      }
+
+      #codeImg {
+        scale: 0.9;
+        height: 100%;
+      }
+
+      @media (max-width: 1275px) {
+        .modal-content {
+          /* display: flex; */
+          flex-direction: column;
+          /* margin-top: 40px; */
+          /* padding: 0 30px 30px; */
+          /* gap: 80px; */
+          /* justify-content: space-around; */
+        }
       }
     </style>
     <script type="text/x-mathjax-config">
@@ -409,7 +528,7 @@
         </p>
         <p>수열 $\{a_n\}$이 모든 자연수 $n$에 대하여</p>
         <p>
-          $\ \ \ \ \ \ \begin{cases} a_{3n} = a_n - 1 \\ a_{3n+1} = -2a_n \\
+          $\ \ \ \ \ \ \ \begin{cases} a_{3n} = a_n - 1 \\ a_{3n+1} = -2a_n \\
           a_{3n+2} = 2a_n + 1 \end{cases}$
         </p>
         <p>
@@ -432,7 +551,116 @@
             </li>
           </ul>
         </fieldset>
+        <div class="btn-group">
+          <button class="show btn" onclick="dialog1.showModal()">
+            수기 풀이
+          </button>
+          <button class="show btn" onclick="dialog2.showModal()">
+            코드 풀이
+          </button>
+        </div>
+        <dialog class="dialog" id="dialog1">
+          <form method="dialog">
+            <button class="close-btn" id="xBtn" onfocus="xBtn.blur()">X</button>
+          </form>
+          <div class="modal-content">
+            <div class="part1">
+              <p>
+                $\begin{cases} a_{3n} = a_n - 1 \\ a_{3n+1} = -2a_n \\ a_{3n+2}
+                = 2a_n + 1 \end{cases}$
+              </p>
+              <p>에서</p>
+              <p>$\ \ \ \ \ \ \ a_{3n}+a_{3n+1}+a_{3n+2}=a_n \cdots$ ㉠</p>
+              <p>
+                $\ \ \ \ \ \ \displaystyle\sum_{k=1}^{99}{a_k} =
+                a_1+a_2+a_3+\cdots+a_{99}$
+              </p>
+              <p>
+                $\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =
+                a_1+a_2+(a_3+a_4+a_5)+\cdots \\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+                \ \ +(a_{96}+a_{97}+a_{98})+a_{99}$
+              </p>
+              <p>
+                $\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =
+                a_1+a_2+(a_1+a_2+\cdots+a_{32})+a_{99}$
+              </p>
+              <p>
+                $a_1+a_2+\cdots+a_{32}$와 $a_{99}$를 각각 계산해주면 ㉠에 의하여
+              </p>
+              <p>
+                $\ \ \ \ \ \ \ \ a_1+a_2+a_3+\cdots+a_{30}+a_{31}+a_{32} \\ \ \
+                \ \ \ \ \ = a_1+a_2+(a_3+a_4+a_5)+\cdots \\ \ \ \ \ \ \ \ +
+                (a_{30}+a_{31}+a_{32}) \\ \ \ \ \ \ \ \ =
+                a_1+a_2+a_1+\cdots+a_{10} \\ \ \ \ \ \ \ \ =
+                a_1+a_2+(a_1+a_2+\cdots+a_{10}) \\ \ \ \ \ \ \ \ =
+                a_1+a_2+\{a_1+a_2+(a_3+a_4+a_5) \\ \ \ \ \ \ \ \
+                +(a_6+a_7+a_8)+a_9+a_{10}\} \\ \ \ \ \ \ \ \ = 2a_1+3a_2$
+              </p>
+            </div>
+            <div class="part2">
+              <p>이고</p>
+              <p>$\ \ \ \ \ \ \ a_{99} = a_{33} - 1 = a_{11} - 2 = 2a_1 - 3$</p>
+              <p>이다.</p>
+              <p>
+                $\ \ \ \ \ \ \ \therefore \displaystyle\sum_{k=1}^{99}{a_k} =
+                a_1+a_2+(a_1+a_2+\cdots+a_{32})+a_{99}\\ \ \ \ \ \ \ \ \ \ \ \ \
+                \ \ \ \ \ \ \ \ \ \ \ = a_1 + a_2 + (2a_1 + 3a_2) + 2a_1 - 3\\ \
+                \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = 5a_1+4a_2 -3\\ \ \
+                \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ &geq;
+                2\sqrt{20a_1a_2}-3\\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \
+                \ (\text{단, 등호는 }5a_1=4a_2\text{일 때 성립한다.})$
+              </p>
+              <p>따라서 $a_1a_2=20$이므로 구하는 최솟값은 $37$이다.</p>
+            </div>
+          </div>
+        </dialog>
+        <dialog class="dialog" id="dialog2">
+          <form method="dialog">
+            <button class="close-btn" id="xBtn" onfocus="xBtn.blur()">X</button>
+          </form>
+          <div class="modal-content code-view">
+            <div class="modal2">
+              <input
+                id="inputEl"
+                type="text"
+                list="lang-options"
+                placeholder="언어를 입력"
+              />
+              <button class="submit btn">조회</button>
+              <datalist id="lang-options">
+                <option value="C" />
+                <option value="C++" />
+                <option value="Java" />
+                <option value="JavaScript" />
+                <option value="Python" />
+              </datalist>
+            </div>
+            <div class="imgContainer">
+              <img id="codeImg" />
+            </div>
+          </div>
+        </dialog>
       </div>
     </div>
+    <script>
+      const fileMap = new Map([
+        ['C', 'c'],
+        ['C++', 'cpp'],
+        ['Java', 'java'],
+        ['JavaScript', 'js'],
+        ['Python', 'py'],
+      ]);
+
+      document.querySelector('.submit').addEventListener('click', e => {
+        try {
+          codeImg.setAttribute(
+            'src',
+            `images/code.${fileMap.get(inputEl.value)}.png`
+          );
+        } catch (e) {
+          console.log(e);
+        }
+      });
+    </script>
   </body>
 </html>
